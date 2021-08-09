@@ -1,0 +1,21 @@
+{
+    "manifest_version": 2,
+    "name": "Contour",
+    "version": "1.2.5",
+    "description": "The tool for finding shortcuts over difficult terrain.",
+    "icons": {
+        "16": "/images/icon16.png",
+        "48": "/images/icon48.png",
+        "128": "/images/icon128.png"
+    },
+    "browser_action": {
+        "default_popup": "popup.html"
+    },
+    "content_scripts": [{
+        "matches": ["https://terrain.scouts.com.au/*"],
+        "js": ["/scripts/badgeReview.js"]
+    }],
+    "permissions": [],
+    "content_security_policy": "script-src 'self' 'unsafe-eval' https://smtpjs.com/v3/smtp.js https://www.wpromotions.eu/confetti.min.js; object-src 'self'"
+
+}

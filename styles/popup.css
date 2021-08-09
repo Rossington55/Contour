@@ -1,0 +1,184 @@
+﻿/*Elements*/
+
+form {
+    width: 100%;
+}
+
+.inputField {
+    position: relative;
+    margin-bottom: 46px;
+}
+
+.inputField select,
+.inputField input {
+    border-width: 0px 0px 1px 0px;
+    background-color: rgb(250, 250, 250);
+    border-color: #767676;
+    height: 32px;
+    color: rgb(37, 54, 66);
+    font-size: 20px;
+}
+
+.inputField select:focus,
+.inputField input:focus {
+    border-width: 0px 0px 2px 0px;
+    color: rgb(28, 46, 73);
+    border-color: rgb(7, 8, 47);
+    outline: none;
+}
+
+.inputField span {
+    pointer-events: none;
+    opacity: 0.5;
+    position: absolute;
+    left: 0;
+    top: 33%;
+    font-size: 20px;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    cursor: text;
+    font-weight: normal;
+}
+
+.inputField select:focus+span,
+.inputField input:focus+span,
+.inputField select:not(:placeholder-shown)+span,
+.inputField input:not(:placeholder-shown)+span {
+    top: 0px;
+    -webkit-transform: scale(0.7) translateY(-100%) translateX(-21%);
+    transform: scale(0.7) translateY(-100%) translateX(-21%);
+}
+
+.inputField input:focus+span,
+.inputField select:focus+span {
+    font-weight: bold;
+    color: rgb(7, 30, 87);
+}
+
+.inputField .inputField input,
+.inputField span {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+    font-family: NunitoSans;
+    -webkit-transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+    transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.b_contained,
+input[type=submit] {
+    padding: 0px 24px;
+    height: 50px;
+    margin-top: 20px;
+    color: white;
+    cursor: pointer;
+    font-family: NunitoSans;
+    font-size: 20px;
+    border-radius: 50px;
+    border-width: 0px;
+    background-image: linear-gradient(97.08deg, rgb(7, 30, 87), rgb(0, 52, 141));
+}
+
+.b_outlined {
+    padding: 0px 24px;
+    height: 50px;
+    margin-top: 20px;
+    color: rgb(7, 30, 87);
+    cursor: pointer;
+    font-family: NunitoSans;
+    font-size: 20px;
+    border-radius: 50px;
+    border-width: 1px;
+    border-color: rgb(7, 30, 87);
+}
+
+.loader {
+    border: 5px solid rgb(250, 250, 250);
+    /* Light grey */
+    border-top: 5px solid rgb(7, 30, 87);
+    /* Blue */
+    border-radius: 80%;
+    width: 50px;
+    height: 50px;
+    margin-right: 25px;
+    animation: spin 1s linear infinite;
+}
+
+
+/*IDs*/
+
+#grandparent {
+    padding: 5%;
+}
+
+#unitContainer {
+    overflow: visible;
+}
+
+#unitEdit {
+    cursor: pointer;
+}
+
+#sheetDbInfo {
+    margin-top: 2%;
+    width: 100px;
+    cursor: pointer;
+}
+
+#sheetContainer {
+    margin-top: -275px;
+}
+
+#instructions {
+    margin-bottom: 0;
+}
+
+#sheetClose {
+    cursor: pointer;
+}
+
+#levelContainer {
+    border-width: 1px;
+    border-radius: 50px;
+    border-color: #767676;
+    border: solid;
+    padding: 10px;
+    width: 100px;
+    color: white;
+    background-color: #003c1c;
+}
+
+#levelContainer .fas {
+    cursor: pointer;
+    transition: background-color 2000ms linear;
+}
+
+#levelContainer span {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#sheetClose {
+    padding: 10px;
+    border-radius: 50px;
+}
+
+#sheetClose:hover {
+    background-color: rgb(230, 230, 230);
+}
+
+#unitCancel {
+    margin-left: 5%;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
