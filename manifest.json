@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Contour",
-    "version": "1.2.5",
+    "version": "1.2.6",
     "description": "The tool for finding shortcuts over difficult terrain.",
     "icons": {
         "16": "/images/icon16.png",

@@ -488,7 +488,7 @@ async function ScrapePage() {
                                     //Add their name and level to the OAS Stream
 
                                     oasData[i].push({
-                                        name: name[0].innerText,
+                                        name: name[name.length - 1].innerText,
                                         level: levels[i][6]
                                     })
                                 }
@@ -602,7 +602,7 @@ function init() {
 
 function initTable() {
     let table = document.getElementsByTagName("table");
-
+    console.log(table);
     const waitForTable = setInterval(() => {
         if (table[0].children[2].children.length > 1) {
             init();
@@ -614,7 +614,8 @@ function initTable() {
 
 setInterval(() => {
     if (window.location.href.includes("group-life/unit")) {
-        if (!lock) {
+        let table = document.getElementsByTagName("table");
+        if (!lock && table.length > 0) {
             lock = true;
             initTable();
         }
