@@ -126,6 +126,7 @@ initAC = () => {
 
 
 //Don't load anything until you're sure this is the data-import page
+/*
 setInterval(() => {
     if (window.location.href.includes("data-import")) {
         if (!acLock) {
@@ -137,6 +138,7 @@ setInterval(() => {
         acLock = false;
     }
 }, 3000)
+*/
 
 acLock = false;
 lastBadgeSelectValue = "Introduction To Scouting";

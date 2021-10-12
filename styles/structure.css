@@ -3,7 +3,7 @@
     min-width: 430px;
     background-color: rgb(250, 250, 250);
 }
-
+/*
 article {
     display: flex;
     flex-direction: column;
@@ -15,7 +15,6 @@ section {
     flex-direction: row;
     position: relative;
 }
-
 form {
     display: flex;
 }
@@ -47,6 +46,7 @@ i {
 a {
     font-size: 12px;
 }
+*/
 
 
 /*Classes*/
