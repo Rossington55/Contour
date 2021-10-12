@@ -424,7 +424,7 @@ function createPage() {
     let tblName = header.insertCell();
     tblName.innerText = "Milestones Remaining"; //Set the name of the table in the top left corner
     css(tblName, styles.tn);
-    ["Participate","Assist","Lead","Community","Outdoors", "Creative", "Personal Growth"].forEach((msType)=>{
+    ["Participate", "Assist", "Lead", "Community", "Outdoors", "Creative", "Personal Growth"].forEach((msType) => {
         let cell = header.insertCell();
         cell.innerText = msType;
         css(cell, styles.th);
@@ -438,7 +438,7 @@ function createPage() {
         css(cell, styles.td);
         cell.innerText = i["name"];
 
-        ["participate","assist","lead","community","outdoors", "creative", "personalgrowth"].forEach((msType)=>{
+        ["participate", "assist", "lead", "community", "outdoors", "creative", "personalgrowth"].forEach((msType) => {
             let cell = row.insertCell();
             css(cell, styles.td);
             cell.style.textAlign = "center";
@@ -452,7 +452,7 @@ function createPage() {
     let cell = row.insertCell();
     css(cell, styles.th);
     cell.innerText = "Maximum";
-    ["participate","assist","lead","community","outdoors", "creative", "personalgrowth"].forEach((msType)=>{
+    ["participate", "assist", "lead", "community", "outdoors", "creative", "personalgrowth"].forEach((msType) => {
         let cell = row.insertCell();
         css(cell, styles.td);
         cell.style.textAlign = "center";
@@ -481,20 +481,21 @@ async function ScrapePage() {
     milestoneData = [];
 
     //Go through the current table
-    const analyzePage = async() => {
+    const analyzePage = async () => {
         const tabs = document.getElementsByClassName("MemberMetricsTable__showModal");
         const rows = document.getElementsByTagName("tr");
         let levels = [];
         let name = "";
 
         //OAS and SIA(Awaiting Data)
-        //For every tab button in the table
+        //For every tab button in the table (a.k.a every person)
         for (let i in tabs) {
-
-            const waitForCheck = async() => {
+            if (i === "length") { break }
+            const waitForCheck = async () => {
 
                 //OAS
                 if (tabs[i].innerText === "View Progress") {
+
                     //Open the dialog
                     tabs[i].click();
 
@@ -519,43 +520,64 @@ async function ScrapePage() {
                             */
 
                             //For each stream
-                            for (let i = 0; i < oldLevels.length; i++) {
-                                if (oldLevels[i].children.length > 1) { //If there are multiple branches in the stream
+                            for (let k = 0; k < oldLevels.length; k++) {
+                                if (oldLevels[k].children.length > 1) { //If there are multiple branches in the stream
                                     let highest = 0;
-                                    for (let j = 0; j < oldLevels[i].children.length; j++) { //For every branch in this stream
-                                        const child = oldLevels[i].children[j].children[0]; //Let the child = the lowest div with text
+                                    for (let j = 0; j < oldLevels[k].children.length; j++) { //For every branch in this stream
+                                        const child = oldLevels[k].children[j].children[0]; //Let the child = the lowest div with text
 
                                         //If this level (e.g. Stage 5, hence text[6] = "5") is greater than the previously found highest level
-                                        if (child.innerText[6] > oldLevels[i].children[highest].children[0].innerText[6]) {
+                                        if (child.innerText[6] > oldLevels[k].children[highest].children[0].innerText[6]) {
                                             highest = j;
                                         }
                                     }
 
                                     //Set the current level to whatever is the highest value in this stream
-                                    levels[i] = oldLevels[i].children[highest].children[0].innerText;
+                                    levels[k] = oldLevels[k].children[highest].children[0].innerText;
                                 } else {
 
-                                    levels[i] = oldLevels[i].children[0].children[0].innerText;
+                                    levels[k] = oldLevels[k].children[0].children[0].innerText;
                                 }
                             }
 
                             //For each OAS Stream
-                            for (let i in oasData) {
+                            for (let k in oasData) {
 
                                 //If this youth isn't level 0
-                                if (levels[i] !== "Not started") {
+                                if (levels[k] !== "Not started") {
 
                                     //Add their name and level to the OAS Stream
 
-                                    oasData[i].push({
+                                    oasData[k].push({
                                         name: name[name.length - 1].innerText,
-                                        level: levels[i][6]
+                                        level: levels[k][6]
                                     })
                                 }
                             }
 
                             res();
-                        }, 50);
+                        }, 200);
+                    })
+                } else if (tabs[i].innerText.includes("Milestone")) {
+                    //Open the dialog
+                    tabs[i].click();
+                    //Wait for the dialog to open
+                    await new Promise(res => {
+                        //Inside dialog
+
+                        setTimeout(() => {
+                            milestoneDetailData.push({
+                                name: document.getElementsByClassName("ConfirmationDialog__subtitle")[0].innerText,
+                                participate: document.getElementsByClassName("MilestoneDialog__strong-row")[0].children[1].innerText,
+                                community: document.getElementsByClassName("row MilestoneDialog__normal-row")[0].children[2].innerText,
+                                outdoors: document.getElementsByClassName("row MilestoneDialog__normal-row")[1].children[2].innerText,
+                                creative: document.getElementsByClassName("row MilestoneDialog__normal-row")[2].children[2].innerText,
+                                personalgrowth: document.getElementsByClassName("row MilestoneDialog__normal-row")[3].children[2].innerText,
+                                lead: document.getElementsByClassName("MilestoneDialog__strong-row")[2].children[1].innerText,
+                                assist: document.getElementsByClassName("MilestoneDialog__strong-row")[1].children[1].innerText,
+                            });
+                            res();
+                        }, 200);
                     })
                 }
 
@@ -563,9 +585,8 @@ async function ScrapePage() {
             };
 
             await waitForCheck();
-            i++;
-        }
 
+        }
         //Milestones
         for (let i = 1; i < rows.length; i++) { //For each person
             const name = rows[i].children[0].innerText;
@@ -586,25 +607,6 @@ async function ScrapePage() {
                 }
             }
             milestoneData.push({ name: name, curLevel: curLevel, milestones: levels });
-            const waitForMileStoneCheck = async() => {
-                rows[i].children[4].children[0].click();
-                await new Promise(res => {
-                    setTimeout(() => {
-                        milestoneDetailData.push({
-                            name: name, 
-                            participate: document.getElementsByClassName("MilestoneDialog__strong-row")[0].children[1].innerText,
-                            community: document.getElementsByClassName("row MilestoneDialog__normal-row")[0].children[2].innerText,
-                            outdoors: document.getElementsByClassName("row MilestoneDialog__normal-row")[1].children[2].innerText,
-                            creative: document.getElementsByClassName("row MilestoneDialog__normal-row")[2].children[2].innerText,
-                            personalgrowth: document.getElementsByClassName("row MilestoneDialog__normal-row")[3].children[2].innerText,
-                            lead: document.getElementsByClassName("MilestoneDialog__strong-row")[2].children[1].innerText,
-                            assist: document.getElementsByClassName("MilestoneDialog__strong-row")[1].children[1].innerText,
-                            });
-                         res();
-                    }, 50);
-                });
-            }
-            await waitForMileStoneCheck();
         }
 
 
@@ -637,7 +639,7 @@ async function ScrapePage() {
 
     await new Promise(res => {
 
-        setTimeout(async() => {
+        setTimeout(async () => {
 
             //For each table page
             do {
