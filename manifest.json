@@ -22,7 +22,8 @@
             "js": [
                 "/scripts/badgeReview.js",
                 "/scripts/autoConvert.js",
-                "/scripts/s2pconverter.js"
+                "/scripts/s2pconverter.js",
+                "/scripts/copyLogbook.js"
             ]
         }
     ],
