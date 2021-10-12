@@ -90,6 +90,7 @@ milestones are represented a 3 bits, each bit representing the respective milest
 e.g milestone: 0b101 means they completed 1 and 3
 */
 let milestoneData = [];
+let milestoneDetailData = [];
 
 const levelColours = [
     "#003c1c",
@@ -409,7 +410,64 @@ function createPage() {
 
         newPage.appendChild(table);
     }
+
+    //Milestone Detail
+
+    const msdTable = document.createElement("table");
+    css(msdTable, styles.table);
+    msdTable.style.backgroundColor = "rgb(0,0,0,0.2)";
+    msdTable.style.width = "100%";
+
+    let header = msdTable.insertRow();
+    let tblName = header.insertCell();
+    tblName.innerText = "Milestones Remaining"; //Set the name of the table in the top left corner
+    css(tblName, styles.tn);
+    ["Participate","Assist","Lead","Community","Outdoors", "Creative", "Personal Growth"].forEach((msType)=>{
+        let cell = header.insertCell();
+        cell.innerText = msType;
+        css(cell, styles.th);
+        cell.style.textAlign = "center";
+    })
+
+    milestoneDetailData.forEach((i) => {
+        let row = msdTable.insertRow();
+        css(row, styles.tr);
+        let cell = row.insertCell();
+        css(cell, styles.td);
+        cell.innerText = i["name"];
+
+        ["participate","assist","lead","community","outdoors", "creative", "personalgrowth"].forEach((msType)=>{
+            let cell = row.insertCell();
+            css(cell, styles.td);
+            cell.style.textAlign = "center";
+            const msData = i[msType].split("/");
+            cell.innerText = parseInt(msData[1].trim()) - parseInt(msData[0].trim());
+        })
+    });
+    // Maximum Row
+    let row = msdTable.insertRow();
+    css(row, styles.tr);
+    let cell = row.insertCell();
+    css(cell, styles.th);
+    cell.innerText = "Maximum";
+    ["participate","assist","lead","community","outdoors", "creative", "personalgrowth"].forEach((msType)=>{
+        let cell = row.insertCell();
+        css(cell, styles.td);
+        cell.style.textAlign = "center";
+        cell.style.fontWeight = "bold";
+        const values = milestoneDetailData.map((ms) => {
+            const msData = ms[msType].split("/");
+            return (parseInt(msData[1].trim()) - parseInt(msData[0].trim()));
+        });
+        cell.innerText = Math.max(...values).toString();
+    })
+
+    newPage.appendChild(msdTable);
+
+    //download and clean up
     download("Unit badge report", newPage);
+    document.getElementsByClassName("v-card__actions")[1].children[1].click(); //close tab
+    document.getElementsByClassName("v-card__actions")[0].children[1].click(); //close tab
 }
 
 
@@ -525,9 +583,29 @@ async function ScrapePage() {
                     levels |= 0b001;
                 }
             }
-
             milestoneData.push({ name: name, curLevel: curLevel, milestones: levels });
+            const waitForMileStoneCheck = async() => {
+                rows[i].children[4].children[0].click();
+                await new Promise(res => {
+                    setTimeout(() => {
+                        milestoneDetailData.push({
+                            name: name, 
+                            participate: document.getElementsByClassName("MilestoneDialog__strong-row")[0].children[1].innerText,
+                            community: document.getElementsByClassName("row MilestoneDialog__normal-row")[0].children[2].innerText,
+                            outdoors: document.getElementsByClassName("row MilestoneDialog__normal-row")[1].children[2].innerText,
+                            creative: document.getElementsByClassName("row MilestoneDialog__normal-row")[2].children[2].innerText,
+                            personalgrowth: document.getElementsByClassName("row MilestoneDialog__normal-row")[3].children[2].innerText,
+                            lead: document.getElementsByClassName("MilestoneDialog__strong-row")[2].children[1].innerText,
+                            assist: document.getElementsByClassName("MilestoneDialog__strong-row")[1].children[1].innerText,
+                            });
+                         res();
+                    }, 50);
+                });
+            }
+            await waitForMileStoneCheck();
         }
+
+
 
     };
 
