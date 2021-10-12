@@ -556,7 +556,7 @@ async function ScrapePage() {
                             }
 
                             res();
-                        }, 200);
+                        }, 50);
                     })
                 } else if (tabs[i].innerText.includes("Milestone")) {
                     //Open the dialog
@@ -577,7 +577,7 @@ async function ScrapePage() {
                                 assist: document.getElementsByClassName("MilestoneDialog__strong-row")[1].children[1].innerText,
                             });
                             res();
-                        }, 200);
+                        }, 50);
                     })
                 }
 
