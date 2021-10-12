@@ -1,9 +1,11 @@
 const styles = {
     generateBtn: {
-        height: "50px",
+        height: "40px",
         padding: "0 30px",
         borderRadius: "500px",
         marginTop: "15px",
+        marginRight: "3%",
+        whiteSpace: "nowrap",
         backgroundImage: "linear-gradient(97.08deg, rgb(7, 30, 87), rgb(0, 52, 141))",
         color: "white",
         fontSize: "20px",
@@ -602,7 +604,6 @@ function init() {
 
 function initTable() {
     let table = document.getElementsByTagName("table");
-    console.log(table);
     const waitForTable = setInterval(() => {
         if (table[0].children[2].children.length > 1) {
             init();

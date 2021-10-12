@@ -105,7 +105,12 @@ a {
     right: 0;
 }
 
-.card {
+.checkbox {
+    width: 30px;
+    height:30px;
+}
+
+.card__contour {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     z-index: 2;
     position: absolute;
@@ -121,6 +126,11 @@ a {
     transition-timing-function: cubic-bezier(.27, 1, .75, 1);
 }
 
+
+.hoverable:hover {
+    background-color: #c1c1c1 !important;
+    cursor: pointer;
+}
 
 /* Tooltip text */
 
@@ -138,7 +148,9 @@ a {
     z-index: 2;
 }
 
-
+.inlineTable {
+    display: inline-table;
+}
 /* Show the tooltip text when you mouse over the tooltip container */
 
 .tooltip:hover .tooltiptext {
@@ -146,6 +158,31 @@ a {
 }
 
 
+.b_contained {
+    padding: 0px 24px;
+    height: 50px;
+    margin-top: 20px;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 50px;
+    border-width: 0px;
+    background-image: linear-gradient(97.08deg, rgb(7, 30, 87), rgb(0, 52, 141));
+}
+
+.b_outlined {
+    padding: 0px 24px;
+    height: 50px;
+    margin-top: 20px;
+    color: rgb(7, 30, 87);
+    cursor: pointer;
+    font-size: 20px;
+    border-style: solid;
+    border-radius: 50px;
+    border-width: 1px;
+    background-image: none !important;
+    border-color: rgb(7, 30, 87);
+}
 /*Fonts*/
 
 @font-face {
