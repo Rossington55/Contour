@@ -23,7 +23,8 @@
                 "/scripts/badgeReview.js",
                 "/scripts/autoConvert.js",
                 "/scripts/s2pconverter.js",
-                "/scripts/copyLogbook.js"
+                "/scripts/copyLogbook.js",
+                "/scripts/exportiCal.js"
             ]
         }
     ],

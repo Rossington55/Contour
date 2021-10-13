@@ -44,7 +44,6 @@ function initWrite() {
   `);
   newScript.appendChild(inlineScript); 
   document.body.appendChild(newScript);
-  console.log(window.$nuxt);
 }
 
 function initRead() {
@@ -88,7 +87,6 @@ function initRead() {
     `);
     newScript.appendChild(inlineScript); 
     document.body.appendChild(newScript);
-    console.log(window.$nuxt);
 }
 
 if (window.location.href.includes("logbook")) {
