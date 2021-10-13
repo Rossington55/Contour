@@ -49,7 +49,6 @@ function initWrite() {
       reader.onload  = function(evt) {
           // file is loaded
           saveData(evt.target.result);
-          console.log(result);
           ready = true;
       };
       reader.readAsText(file);
@@ -82,8 +81,7 @@ function initWrite() {
       "body": text,
       "method": "POST",
       "mode": "cors"
-    });
-    location.reload();
+    }).then(()=>{location.reload()});
   }
   `);
   newScript.appendChild(inlineScript); 
