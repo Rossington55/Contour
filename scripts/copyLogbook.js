@@ -5,7 +5,7 @@ function initWrite() {
   const btn = document.evaluate(`//button[contains(@data-cy, 'ADD_NEW_RECORD')]`, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
   const newButton = document.createElement("button");
   //css(newButton, styles.generateBtn);
-  newButton.classList = "float-right v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default";
+  newButton.classList = "mr-4 float-right v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default";
   newButton.setAttribute("onclick", "saveData()");
   newButton.id = "writeClipboardBtn";
   newButton.innerHTML = "Paste from Clipboard";
@@ -48,9 +48,10 @@ function initWrite() {
 
 function initRead() {
     const btn = document.evaluate(`//button[ancestor::section[contains(@class, 'ViewRecord__no-print')] and contains(@data-cy, 'PRINT')]`, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+    btn.classList.add("mr-4");
     const newButton = document.createElement("button");
     //css(newButton, styles.generateBtn);
-    newButton.classList = "float-right v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default";
+    newButton.classList = "mr-4 float-right v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default";
     newButton.setAttribute("onclick", "loadData()");
     
     newButton.innerHTML = "Copy to Clipboard";
