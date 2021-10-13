@@ -42,13 +42,11 @@ function initExportBtn() {
   document.evaluate(`//button[contains(@data-cy, 'PRINT')]`, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.classList.add("mr-4");
 }
 
-if (window.location.href.includes("programming/view-planned-activity")) {
-  setInterval(() => {
-      if (
-        document.evaluate(`//button[ancestor::div[contains(@class, 'ViewPlannedActivity__actions')] and contains(@data-cy, 'EXPORT')]`, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue
-        && !document.getElementById("exportiCalBtn")
-        ) {
-          initExportBtn();
-      } 
-  }, 2000);
-}
+setInterval(() => {
+    if (
+      document.evaluate(`//button[ancestor::div[contains(@class, 'ViewPlannedActivity__actions')] and contains(@data-cy, 'EXPORT')]`, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue
+      && !document.getElementById("exportiCalBtn")
+      ) {
+        initExportBtn();
+    } 
+}, 2000);
