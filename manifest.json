@@ -20,7 +20,10 @@
                 "https://terrain.scouts.com.au/*"
             ],
             "js": [
-                "/scripts/badgeReview.js"
+                "/scripts/contourStart.js",
+                "/scripts/badgeReview.js",
+                "/scripts/copyLogbook.js",
+                "/scripts/exportiCal.js"
             ]
         }
     ],
