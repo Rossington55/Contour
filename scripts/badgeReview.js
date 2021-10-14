@@ -468,8 +468,6 @@ function createPage() {
 
     //download and clean up
     download("Unit badge report", newPage);
-    document.getElementsByClassName("v-card__actions")[1].children[1].click(); //close tab
-    document.getElementsByClassName("v-card__actions")[0].children[1].click(); //close tab
 }
 
 
@@ -479,6 +477,7 @@ async function ScrapePage() {
 
     oasData = JSON.parse(JSON.stringify(defaultOASData));
     milestoneData = [];
+    milestoneDetailData = [];
 
     //Go through the current table
     const analyzePage = async () => {
@@ -511,11 +510,11 @@ async function ScrapePage() {
 
                             /*
                             Old Levels is an array of:
-
+                            
                             <div class="col col6">
-                                <div class="branchname or something idk">
-                                    <div class="col"> Stage 3 </div>
-                                </div>
+                            <div class="branchname or something idk">
+                            <div class="col"> Stage 3 </div>
+                            </div>
                             </div>
                             */
 
@@ -555,8 +554,9 @@ async function ScrapePage() {
                                 }
                             }
 
+                            document.getElementsByClassName("v-card__actions")[1].children[1].click(); //close tab
                             res();
-                        }, 50);
+                        }, 250);
                     })
                 } else if (tabs[i].innerText.includes("Milestone")) {
                     //Open the dialog
@@ -565,9 +565,14 @@ async function ScrapePage() {
                     await new Promise(res => {
                         //Inside dialog
 
+
                         setTimeout(() => {
+                            //When changing groups, confirmationDialog refers to multiple elements. The name we want is always the latest element
+                            name = document.getElementsByClassName("ConfirmationDialog__subtitle");
+                            name = name[name.length - 1];
+
                             milestoneDetailData.push({
-                                name: document.getElementsByClassName("ConfirmationDialog__subtitle")[0].innerText,
+                                name: name.innerText,
                                 participate: document.getElementsByClassName("MilestoneDialog__strong-row")[0].children[1].innerText,
                                 community: document.getElementsByClassName("row MilestoneDialog__normal-row")[0].children[2].innerText,
                                 outdoors: document.getElementsByClassName("row MilestoneDialog__normal-row")[1].children[2].innerText,
@@ -576,8 +581,10 @@ async function ScrapePage() {
                                 lead: document.getElementsByClassName("MilestoneDialog__strong-row")[2].children[1].innerText,
                                 assist: document.getElementsByClassName("MilestoneDialog__strong-row")[1].children[1].innerText,
                             });
+
+                            document.getElementsByClassName("v-card__actions")[0].children[1].click(); //close tab
                             res();
-                        }, 50);
+                        }, 250);
                     })
                 }
 
