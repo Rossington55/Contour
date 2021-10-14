@@ -23,7 +23,8 @@
                 "/scripts/contourStart.js",
                 "/scripts/badgeReview.js",
                 "/scripts/copyLogbook.js",
-                "/scripts/exportiCal.js"
+                "/scripts/exportiCal.js",
+                "/scripts/reportsMenu.js"
             ]
         }
     ],

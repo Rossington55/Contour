@@ -18,6 +18,7 @@ function checkLocation(){
 
  function startContourChecks(){
   console.debug("Starting Contour");
+  //page selector
   switch (document.location.pathname) {
     case "/logbook/view-record":
       if (checkPage(`//button[ancestor::section[contains(@class, 'ViewRecord__no-print')] and contains(@data-cy, 'PRINT')]`, "copyClipboardBtn",20))
@@ -36,6 +37,9 @@ function checkLocation(){
         initBadgeReview();
       break;
   }
+  //all pages
+  if (checkPage(`//div[ancestor::nav[contains(@class, 'NavMenu')] and contains(@class, 'NavMenu__menu-container')]`, "contourReportsMenu",20))
+  createContourReportMenu(false);
 }
 
 function checkPage(query,id,delay){ //query = xpath query as string, id = id of an element contour creates to see if it has run, delay is ms delay before retry.
