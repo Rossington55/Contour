@@ -12,9 +12,9 @@ Head over to the "Group Life" page. Select your unit, then hit the "Generate Rep
 
 ## Copy & Paste Logbook entries
 If you have lots of similar log entries, or want to copy the same log entry to multiple youth members you can use this tool to copy and paste them! Find or create a log entry and go to it's "View Record" page. Click the new Copy to Clipboard button and then go back to the main log book page and click paste, it is that easy! You can also copy from one profile and login as another and the paste still works.
-![](/ExportLog.png)
-![](/ImportLog.png)
+![](/images/ExportLog.png)
+![](/images/ImportLog.png)
 
 ## Export events to your own calendar
 Sick of adding events in Terrain and also your own calendar. Use the shiny new button contained in a planned activity and you will recieve a ical file ready to be imported into whichever calendar application you use.  
-![](/ExportiCal.png)
+![](/images/ExportiCal.png)
