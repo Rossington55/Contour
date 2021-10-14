@@ -1,7 +1,7 @@
 
 
 
-function initWrite() {
+function initLogbookWrite() {
   const btn = document.evaluate(`//button[contains(@data-cy, 'ADD_NEW_RECORD')]`, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
   const pasteBtn = document.createElement("button");
   //css(newButton, styles.generateBtn);
@@ -88,7 +88,7 @@ function initWrite() {
   document.body.appendChild(newScript);
 }
 
-function initRead() {
+function initLogbookRead() {
     const btn = document.evaluate(`//button[ancestor::section[contains(@class, 'ViewRecord__no-print')] and contains(@data-cy, 'PRINT')]`, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
     btn.classList.add("mr-4");
     const clipBtn = document.createElement("button");
@@ -156,15 +156,15 @@ function initRead() {
 }
 
 
-setInterval(() => {
-    if (
-      document.evaluate(`//button[ancestor::section[contains(@class, 'ViewRecord__no-print')] and contains(@data-cy, 'PRINT')]`, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue
-      && !document.getElementById("copyClipboardBtn")
-      ) {
-      initRead();
-    } else
-    if (document.evaluate(`//button[contains(@data-cy, 'ADD_NEW_RECORD')]`, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue
-      && !document.getElementById("writeClipboardBtn")) {
-      initWrite();
-      }
-}, 2000);
+// setInterval(() => {
+//     if (
+//       document.evaluate(`//button[ancestor::section[contains(@class, 'ViewRecord__no-print')] and contains(@data-cy, 'PRINT')]`, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue
+//       && !document.getElementById("copyClipboardBtn")
+//       ) {
+//       initRead();
+//     } else
+//     if (document.evaluate(`//button[contains(@data-cy, 'ADD_NEW_RECORD')]`, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue
+//       && !document.getElementById("writeClipboardBtn")) {
+//       initWrite();
+//       }
+// }, 2000);

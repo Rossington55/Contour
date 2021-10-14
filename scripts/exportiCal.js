@@ -29,7 +29,7 @@ console.log(icsMSG);
 }
 
 
-function initExportBtn() {
+function initProgrammingExportBtn() {
   const btn = document.evaluate(`//button[ancestor::div[contains(@class, 'ViewPlannedActivity__actions')] and contains(@data-cy, 'EXPORT')]`, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
   const newButton = document.createElement("button");
   //css(newButton, styles.generateBtn);
@@ -42,11 +42,11 @@ function initExportBtn() {
   document.evaluate(`//button[contains(@data-cy, 'PRINT')]`, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.classList.add("mr-4");
 }
 
-setInterval(() => {
-    if (
-      document.evaluate(`//button[ancestor::div[contains(@class, 'ViewPlannedActivity__actions')] and contains(@data-cy, 'EXPORT')]`, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue
-      && !document.getElementById("exportiCalBtn")
-      ) {
-        initExportBtn();
-    } 
-}, 2000);
+// setInterval(() => {
+//     if (
+//       document.evaluate(`//button[ancestor::div[contains(@class, 'ViewPlannedActivity__actions')] and contains(@data-cy, 'EXPORT')]`, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue
+//       && !document.getElementById("exportiCalBtn")
+//       ) {
+//         initExportBtn();
+//     } 
+// }, 2000);

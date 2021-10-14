@@ -668,7 +668,7 @@ async function ScrapePage() {
     createPage();
 }
 
-function init() {
+function initBadgeReview() {
     let parent = document.getElementsByClassName("v-data-table v-data-table--has-bottom theme--light");
     parent = parent[0];
 
@@ -677,32 +677,32 @@ function init() {
 
     newButton.onclick = ScrapePage;
     newButton.innerHTML = "Generate Report";
-
+    newButton.id = "contourBadgeReportBtn"
     //Add the generate button to the page
     parent.appendChild(newButton);
 }
 
-function initTable() {
-    let table = document.getElementsByTagName("table");
-    const waitForTable = setInterval(() => {
-        if (table[0].children[2].children.length > 1) {
-            init();
-            clearInterval(waitForTable);
-        }
-    }, 500);
+// function initTable() {
+//     let table = document.getElementsByTagName("table");
+//     const waitForTable = setInterval(() => {
+//         if (table[0].children[2].children.length > 1) {
+//             init();
+//             clearInterval(waitForTable);
+//         }
+//     }, 500);
 
-}
+// }
 
-setInterval(() => {
-    if (window.location.href.includes("group-life/unit")) {
-        let table = document.getElementsByTagName("table");
-        if (!lock && table.length > 0) {
-            lock = true;
-            initTable();
-        }
-    } else {
-        lock = false;
-    }
-}, 3000)
+// setInterval(() => {
+//     if (window.location.href.includes("group-life/unit")) {
+//         let table = document.getElementsByTagName("table");
+//         if (!lock && table.length > 0) {
+//             lock = true;
+//             initTable();
+//         }
+//     } else {
+//         lock = false;
+//     }
+// }, 3000)
 
-let lock = false;
+// let lock = false;
