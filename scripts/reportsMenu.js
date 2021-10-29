@@ -1,10 +1,11 @@
 function contourMenu(){
   //Menu items in contour page:
   createContourReportMenuItem(true, contourHomePage, "Home", "home"); //first one should be true to clear other menu items
-  createContourReportMenuItem(false, testReport, "Test Report", "test"); //example report with table and chart
+  createContourReportMenuItem(false, unitReport, "Milestone Planning Report", "test");
+  createContourReportMenuItem(false, testReport, "Test Report - HIDE", "test"); //example report with table and chart !!!COMMENT OUT BEFORE RELEASE!!!
   createContourReportMenuItem(false, () => location.href = "https://terrain.scouts.com.au/", "Go back", "back");
 
-  //load home page
+  //load home page content
   contourHomePage();
 }
 

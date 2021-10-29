@@ -6,6 +6,7 @@ async function testReport(){
   //html content is contained within the two backticks ` below
   `
     <h2>Test Report</h2>
+    This is a sample report, note the data is hard coded and the chart and table are using unrelated data. This is just to show how to use the objects.
     <table id="myTable" class="display" width="100%"></table>
     <canvas id="myChart"></canvas>
   `)

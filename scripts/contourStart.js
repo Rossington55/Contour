@@ -52,20 +52,23 @@ function checkPage(query,id,delay){ //query = xpath query as string, id = id of 
   return false;
 }
 
-// set some constants
+// set some constants for reports etc
 
-// var LastAuthUser = localStorage.getItem('CognitoIdentityServiceProvider.6v98tbc09aqfvh52fml3usas3c.LastAuthUser');
-// console.log(LastAuthUser);
-// const response = await fetch("https://members.terrain.scouts.com.au/profiles", {
-//   method: 'GET', mode: 'cors', cache: 'no-cache', credentials: 'same-origin', 
-//   headers: {
-//     'Content-Type': 'application/json',
-//     'Authorization': localStorage.getItem("CognitoIdentityServiceProvider.6v98tbc09aqfvh52fml3usas3c."+LastAuthUser+".idToken")
-//   },
-//   redirect: 'error', referrerPolicy: 'no-referrer', 
-// });
+const LastAuthUser = localStorage.getItem('CognitoIdentityServiceProvider.6v98tbc09aqfvh52fml3usas3c.LastAuthUser');
+let currentProfile = {};
 
-// await response.json().then(data => {
-//   myProfile = data;
-//   console.log(data);
-// });
+fetch("https://members.terrain.scouts.com.au/profiles", {
+  method: 'GET', mode: 'cors', cache: 'no-cache', credentials: 'same-origin', 
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': localStorage.getItem("CognitoIdentityServiceProvider.6v98tbc09aqfvh52fml3usas3c."+LastAuthUser+".idToken")
+  },
+  redirect: 'error', referrerPolicy: 'no-referrer', 
+})
+.then(response => response.json())
+.then(data => {
+  currentProfile = data;
+})
+.catch((error) => {
+  currentProfile = {'Error:': error};
+});
