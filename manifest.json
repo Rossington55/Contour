@@ -20,11 +20,16 @@
                 "https://terrain.scouts.com.au/*"
             ],
             "js": [
+                "/scripts/jquery-3.6.0.min.js",
+                "/scripts/jquery.datatables.min.js",
+                "/scripts/chart.min.js",
                 "/scripts/contourStart.js",
                 "/scripts/badgeReview.js",
                 "/scripts/copyLogbook.js",
                 "/scripts/exportiCal.js",
-                "/scripts/reportsMenu.js"
+                "/scripts/reportsMenu.js",
+                "/scripts/testReport.js"
+                
             ]
         }
     ],

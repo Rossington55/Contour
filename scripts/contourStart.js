@@ -38,8 +38,8 @@ function checkLocation(){
       break;
   }
   //all pages
-  if (checkPage(`//div[ancestor::nav[contains(@class, 'NavMenu')] and contains(@class, 'NavMenu__menu-container')]`, "contourReportsMenu",20))
-  createContourReportMenu(false);
+  if (checkPage(`//div[ancestor::nav[contains(@class, 'NavMenu')] and contains(@class, 'NavMenu__menu-container')]`, "contourReportsMenu-reports",20))
+  createContourReportMenuItem(false, contourMenu, "Contour Reports", "reports");
 }
 
 function checkPage(query,id,delay){ //query = xpath query as string, id = id of an element contour creates to see if it has run, delay is ms delay before retry.
@@ -52,3 +52,20 @@ function checkPage(query,id,delay){ //query = xpath query as string, id = id of 
   return false;
 }
 
+// set some constants
+
+// var LastAuthUser = localStorage.getItem('CognitoIdentityServiceProvider.6v98tbc09aqfvh52fml3usas3c.LastAuthUser');
+// console.log(LastAuthUser);
+// const response = await fetch("https://members.terrain.scouts.com.au/profiles", {
+//   method: 'GET', mode: 'cors', cache: 'no-cache', credentials: 'same-origin', 
+//   headers: {
+//     'Content-Type': 'application/json',
+//     'Authorization': localStorage.getItem("CognitoIdentityServiceProvider.6v98tbc09aqfvh52fml3usas3c."+LastAuthUser+".idToken")
+//   },
+//   redirect: 'error', referrerPolicy: 'no-referrer', 
+// });
+
+// await response.json().then(data => {
+//   myProfile = data;
+//   console.log(data);
+// });
