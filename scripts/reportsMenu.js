@@ -9,22 +9,9 @@ function contourMenu(){
   contourHomePage();
 }
 
-
+//add menu items above, below in the menu code which should not need updates
 
 function createContourReportMenuItem(replaceMenu, func, menuText, menuId){
-
-  //add libraries
-  var dataTablesScript = document.createElement('script');
-  dataTablesScript.type = 'text/javascript';
-  dataTablesScript.src = 'https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.11.3/datatables.min.js';
-  dataTablesScript.charset = 'utf8';
-  document.head.appendChild(dataTablesScript);
-
-  var dataTablesStyleSheet = document.createElement('link');
-  dataTablesStyleSheet.rel = 'stylesheet';  
-  dataTablesStyleSheet.type = 'text/css';
-  dataTablesStyleSheet.href = 'https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.11.3/datatables.min.css';    
-  document.head.appendChild(dataTablesStyleSheet);
 
   const mainMenu = document.evaluate(`//div[ancestor::nav[contains(@class, 'NavMenu')] and contains(@class, 'NavMenu__menu-container')]`, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
   
