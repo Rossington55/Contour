@@ -2,6 +2,7 @@ function contourMenu(){
   //Menu items in contour page:
   createContourReportMenuItem(true, contourHomePage, "Home", "home"); //first one should be true to clear other menu items
   createContourReportMenuItem(false, unitReport, "Milestone Planning Report", "msReport");
+  createContourReportMenuItem(false, progressReport, "Peak Award Progress Report", "progressReport");
   createContourReportMenuItem(false, testReport, "Test Report - HIDE", "testReport"); //example report with table and chart !!!COMMENT OUT BEFORE RELEASE!!!
   createContourReportMenuItem(false, () => location.href = "https://terrain.scouts.com.au/", "Go back", "back");
 
@@ -13,6 +14,11 @@ function contourMenu(){
 
 function createContourReportMenuItem(replaceMenu, func, menuText, menuId){
 
+  var dataTablesStyleSheet = document.createElement('link');
+  dataTablesStyleSheet.rel = 'stylesheet';  
+  dataTablesStyleSheet.type = 'text/css';
+  dataTablesStyleSheet.href = 'https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.11.3/datatables.min.css';    
+  document.head.appendChild(dataTablesStyleSheet);
   const mainMenu = document.evaluate(`//div[ancestor::nav[contains(@class, 'NavMenu')] and contains(@class, 'NavMenu__menu-container')]`, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
   
   const navMenuGroup = document.createElement("div");
