@@ -12,6 +12,7 @@ async function progressReport(retry){
     This report will show the current progress towards the peak award for each member for the section.<br><br>
     <p id="loadingP">Loading Please Wait...</p>
     <table id="progressReportTable" class="display" width="100%"></table>
+    - = Not Started, ~ = In Progress, ✓ = Complete.
   `)
   ;
 
@@ -34,7 +35,7 @@ async function progressReport(retry){
       return [
       r.name,
       r.peak_award.total + "%",
-      r.milestone.milestone == 3 && r.milestone.awarded ? "✓": r.milestone.milestone == 3 ? "S": "-", 
+      r.milestone.milestone == 3 && r.milestone.awarded ? "✓": r.milestone.milestone == 3 ? "~": "-", 
       r.milestone.milestone == 3 ? maxL - r.milestone.total_leads : "-", 
       r.milestone.milestone == 3 ? maxA - r.milestone.total_assists: "-",
       r.milestone.milestone == 3 ? maxP - r.milestone.participates.find(p=>p.challenge_area == 'outdoors').total : "-",
