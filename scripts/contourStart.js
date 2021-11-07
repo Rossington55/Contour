@@ -38,8 +38,8 @@ function checkLocation(){
       break;
   }
   //all pages
-  if (checkPage(`//div[ancestor::nav[contains(@class, 'NavMenu')] and contains(@class, 'NavMenu__menu-container')]`, "contourReportsMenu-reports",20))
-  createContourReportMenuItem(false, contourMenu, "Contour Reports", "reports");
+  if (checkPage(`//div[ancestor::nav[contains(@class, 'NavMenu')] and contains(@class, 'NavMenu__menu-container')]`, "contourReportsMenu-contourMenu",20))
+  createContourReportMenuItem(false, contourMenu, "Contour Menu", "contourMenu");
 }
 
 function checkPage(query,id,delay){ //query = xpath query as string, id = id of an element contour creates to see if it has run, delay is ms delay before retry.
@@ -52,8 +52,8 @@ function checkPage(query,id,delay){ //query = xpath query as string, id = id of 
   return false;
 }
 
-// set some constants for reports etc
 
+// set some constants for reports etc
 const LastAuthUser = localStorage.getItem('CognitoIdentityServiceProvider.6v98tbc09aqfvh52fml3usas3c.LastAuthUser');
 let currentProfile = {};
 
@@ -72,3 +72,19 @@ fetch("https://members.terrain.scouts.com.au/profiles", {
 .catch((error) => {
   currentProfile = {'Error:': error};
 });
+
+$("head").append(`<style type="text/css" id="contour"> 
+.contour-btn { 
+  background: linear-gradient(97.08deg,#004C00,#197419) !important;
+}
+.contour-menu { 
+  background: #004C00 !important;
+  border-bottom-color: #197419 !important;
+  border-top-color: #197419 !important;
+}
+
+.contour-menu:hover {
+  background-color: #197419 !important;
+}
+
+</style>}`);

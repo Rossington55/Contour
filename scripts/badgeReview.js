@@ -684,7 +684,8 @@ function initBadgeReview() {
 
     newButton.onclick = ScrapePage;
     newButton.innerHTML = "Generate Report";
-    newButton.id = "contourBadgeReportBtn"
+    newButton.id = "contourBadgeReportBtn";
+    newButton.classList.add("contour-btn");
     //Add the generate button to the page
     parent.appendChild(newButton);
 }

@@ -31,7 +31,8 @@
                 "/scripts/reportsMenu.js",
                 "/scripts/reports/testReport.js",
                 "/scripts/reports/milestonePlanningReport.js",
-                "/scripts/reports/progressReport.js"
+                "/scripts/reports/progressReport.js",
+                "/scripts/reports/oasReport.js"
             ]
         }
     ],

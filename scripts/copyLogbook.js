@@ -5,7 +5,7 @@ function initLogbookWrite() {
   const btn = document.evaluate(`//button[contains(@data-cy, 'ADD_NEW_RECORD')]`, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
   const pasteBtn = document.createElement("button");
   //css(newButton, styles.generateBtn);
-  pasteBtn.classList = "mr-4 float-right v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default";
+  pasteBtn.classList = "mr-4 float-right v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default contour-btn";
   pasteBtn.setAttribute("onclick", "saveData(undefined)");
   pasteBtn.id = "writeClipboardBtn";
   pasteBtn.innerHTML = "Paste from Clipboard";
@@ -13,7 +13,7 @@ function initLogbookWrite() {
 
   const importBtn = document.createElement("button");
   //css(newButton, styles.generateBtn);
-  importBtn.classList = "mr-4 float-right v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default";
+  importBtn.classList = "mr-4 float-right v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default contour-btn";
   importBtn.setAttribute("onclick", "uploadBtnClicked()");
   importBtn.id = "writeUploadBtn";
   importBtn.innerHTML = "Import";
@@ -93,7 +93,7 @@ function initLogbookRead() {
     btn.classList.add("mr-4");
     const clipBtn = document.createElement("button");
     //css(newButton, styles.generateBtn);
-    clipBtn.classList = "mr-4 float-right v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default";
+    clipBtn.classList = "mr-4 float-right v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default contour-btn";
     clipBtn.setAttribute("onclick", "loadData(false)");
     
     clipBtn.innerHTML = "Copy to Clipboard";
@@ -103,7 +103,7 @@ function initLogbookRead() {
 
     const exportBtn = document.createElement("button");
     //css(exportBtn, styles.generateBtn);
-    exportBtn.classList = "mr-4 float-right v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default";
+    exportBtn.classList = "mr-4 float-right v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default contour-btn";
     exportBtn.setAttribute("onclick", "loadData(true)");
     
     exportBtn.innerHTML = "Export";
