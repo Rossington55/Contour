@@ -9,7 +9,7 @@ async function oasReport(retry){
   //html content is contained within the two backticks ` below
   `
     <h2>${currentProfile.profiles[0].unit.name}</h2>
-    This report will show the current progress towards the peak award for each member for the section.<br><br>
+    This report will show all of the currently held OAS levels for each member of the section.<br><br>
     <p id="loadingP">Loading Please Wait...</p>
     <table id="oasReportTable" class="display" width="100%">
       <thead>
@@ -32,38 +32,36 @@ async function oasReport(retry){
             </tr>
         </thead>
     </table>
-  `)
-  ;
-
-  var dataSet = [];
-
+  `);
+  $("#oasReportTable").hide();
   $.ajax({
     method: "GET",
     url: "https://metrics.terrain.scouts.com.au/units/3603056b-3928-4f66-b12e-421ca4434dcb/members?limit=999",
     headers: {
       "accept": "application/json, text/plain, */*",
-      "authorization" : localStorage.getItem("CognitoIdentityServiceProvider.6v98tbc09aqfvh52fml3usas3c."+LastAuthUser+".idToken")
+      "authorization" : auth
     },
     xhrFields: {
       mode: 'cors'
    }}).done(function(data) {
-     console.log(data);
-     console.debug(data.results);
+    $("#loadingP").remove();
+    $("#oasReportTable").show();
+    console.debug(data.results);
     const tableData = data.results.map(r=>{
       return [
       r.name,
 
-      r.oas.highest.filter(o=>o.stream == "bushwalking").map(b=> "<center style='line-height: 0.9'><b>" + b.stage + "</b><br><span style='font-size:small'>" + b.branch.replace('-',' ').replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()) + "</span></center>").join("<br>") ?? "-",
-      r.oas.highest.filter(o=>o.stream == "bushcraft").map(b=> "<center style='line-height: 0.9'><b>" + b.stage + "</b><br><span style='font-size:small'>" + b.branch.replace('-',' ').replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()) + "</span></center>").join("<br>") ?? "-",
-      r.oas.highest.filter(o=>o.stream == "camping").map(b=> "<center style='line-height: 0.9'><b>" + b.stage + "</b><br><span style='font-size:small'>" + b.branch.replace('-',' ').replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()) + "</span></center>").join("<br>") ?? "-",
+      r.oas.highest.filter(o=>o.stream == "bushwalking").map(b=> "<center style='line-height: 0.7'><b>" + b.stage + "</b><br><span style='font-size:small'>" + b.branch.replace('-',' ').replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()) + "</span></center>").join("<br>") ?? "-",
+      r.oas.highest.filter(o=>o.stream == "bushcraft").map(b=> "<center style='line-height: 0.7'><b>" + b.stage + "</b><br><span style='font-size:small'>" + b.branch.replace('-',' ').replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()) + "</span></center>").join("<br>") ?? "-",
+      r.oas.highest.filter(o=>o.stream == "camping").map(b=> "<center style='line-height: 0.7'><b>" + b.stage + "</b><br><span style='font-size:small'>" + b.branch.replace('-',' ').replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()) + "</span></center>").join("<br>") ?? "-",
 
-      r.oas.highest.filter(o=>o.stream == "apline").map(b=> "<center style='line-height: 0.9'><b>" + b.stage + "</b><br><span style='font-size:small'>" + b.branch.replace('-',' ').replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()) + "</span></center>").join("<br>") ?? "-",
-      r.oas.highest.filter(o=>o.stream == "cycling").map(b=> "<center style='line-height: 0.9'><b>" + b.stage + "</b><br><span style='font-size:small'>" + b.branch.replace('-',' ').replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()) + "</span></center>").join("<br>") ?? "-",
-      r.oas.highest.filter(o=>o.stream == "vertical").map(b=> "<center style='line-height: 0.9'><b>" + b.stage + "</b><br><span style='font-size:small'>" + b.branch.replace('-',' ').replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()) + "</span></center>").join("<br>") ?? "-",
+      r.oas.highest.filter(o=>o.stream == "apline").map(b=> "<center style='line-height: 0.7'><b>" + b.stage + "</b><br><span style='font-size:small'>" + b.branch.replace('-',' ').replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()) + "</span></center>").join("<br>") ?? "-",
+      r.oas.highest.filter(o=>o.stream == "cycling").map(b=> "<center style='line-height: 0.7'><b>" + b.stage + "</b><br><span style='font-size:small'>" + b.branch.replace('-',' ').replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()) + "</span></center>").join("<br>") ?? "-",
+      r.oas.highest.filter(o=>o.stream == "vertical").map(b=> "<center style='line-height: 0.7'><b>" + b.stage + "</b><br><span style='font-size:small'>" + b.branch.replace('-',' ').replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()) + "</span></center>").join("<br>") ?? "-",
 
-      r.oas.highest.filter(o=>o.stream == "aquatics").map(b=> "<center style='line-height: 0.9'><b>" + b.stage + "</b><br><span style='font-size:small'>" + b.branch.replace('-',' ').replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()) + "</span></center>").join("<br>") ?? "-",
-      r.oas.highest.filter(o=>o.stream == "boating").map(b=> "<center style='line-height: 0.9'><b>" + b.stage + "</b><br><span style='font-size:small'>" + b.branch.replace('-',' ').replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()) + "</span></center>").join("<br>") ?? "-",
-      r.oas.highest.filter(o=>o.stream == "paddling").map(b=> "<center style='line-height: 0.9'><b>" + b.stage + "</b><br><span style='font-size:small'>" + b.branch.replace('-',' ').replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()) + "</span></center>").join("<br>") ?? "-",
+      r.oas.highest.filter(o=>o.stream == "aquatics").map(b=> "<center style='line-height: 0.7'><b>" + b.stage + "</b><br><span style='font-size:small'>" + b.branch.replace('-',' ').replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()) + "</span></center>").join("<br>") ?? "-",
+      r.oas.highest.filter(o=>o.stream == "boating").map(b=> "<center style='line-height: 0.7'><b>" + b.stage + "</b><br><span style='font-size:small'>" + b.branch.replace('-',' ').replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()) + "</span></center>").join("<br>") ?? "-",
+      r.oas.highest.filter(o=>o.stream == "paddling").map(b=> "<center style='line-height: 0.7'><b>" + b.stage + "</b><br><span style='font-size:small'>" + b.branch.replace('-',' ').replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()) + "</span></center>").join("<br>") ?? "-",
     ]});
     console.debug(tableData);
     $('#oasReportTable').DataTable( {
@@ -75,7 +73,10 @@ async function oasReport(retry){
       "order":[[1,"desc"]]
     });
    }).fail(function(data) {
-     console.error(data);
+    if (retry < 3) {
+      console.debug("Data load failed retry attempt: " + retry)
+      unitReport(retry++);
+    }
+    else $("#loadingP").text("An error has occured please try again later. This is a Contour error. Please do not contact Terrain support for this issue.");
    });
-
 }

@@ -3,14 +3,26 @@ function contourMenu(){
   //Menu items in contour page:
   createContourReportMenuItem(true, contourHomePage, "Home", "home"); //first one should be true to clear other menu items
   createContourReportMenuItem(false, unitReport, "Milestone Planning Report", "msReport");
-  createContourReportMenuItem(false, progressReport, "Peak Award Progress Report", "progressReport");
-  createContourReportMenuItem(false, oasReport, "OAS Report", "oasReport");
+  createContourReportMenuItem(false, ()=>progressReport(0), "Peak Award Progress Report", "progressReport");
+  createContourReportMenuItem(false, ()=>oasReport(0), "OAS Report", "oasReport");
   //createContourReportMenuItem(false, testReport, "Test Report - HIDE", "testReport"); //example report with table and chart !!!COMMENT OUT BEFORE RELEASE!!!
   createContourReportMenuItem(false, () => location.href = "https://terrain.scouts.com.au/", "Back to SCOUTS | TERRAIN", "back");
   $(".NavMenu__logo").click(() => location.href = "https://terrain.scouts.com.au/");
-
-  //load home page content
   contourHomePage();
+  //load home page content
+  //let menuitem = document.getElementById("contourReportsMenu-contourMenu");
+  //const navMenuGroup = document.createElement("div");
+  //menuitem.setAttribute("onclick", `document.body.innerHTML += "document.getElementById("content").innerHTML = window.$nuxt.$store._vm["auth/getIdToken"]"'></div>"`);
+  //document.body.innerHTML += `<div id='auth' onclick='document.getElementById("auth").innerHTML = window.$nuxt.$store._vm["auth/getIdToken"]'></div>`;
+  $(`<div id='auth' onclick='document.getElementById("auth").innerHTML = window.$nuxt.$store._vm["auth/getIdToken"]'></div>`).insertAfter("#__nuxt");
+  // x.id = "auth";
+  // x.prop("onclick", `document.getElementById("auth").innerHTML = window.$nuxt.$store._vm["auth/getIdToken"]'></div>`);
+  // $("body").append(x);
+  $("#auth").click();
+  // //$("#auth").click();
+  auth = $("#auth").text();
+  $("#auth").remove();
+ 
 }
 
 //add menu items above, below in the menu code which should not need updates

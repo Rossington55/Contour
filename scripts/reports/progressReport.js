@@ -102,7 +102,6 @@ async function progressReport(retry){
   }`);
   })
   .catch((error) => {
-    retry = retry ?? 0;
     if (retry < 3) {
       console.debug("Data load failed retry attempt: " + retry)
       unitReport(retry++);

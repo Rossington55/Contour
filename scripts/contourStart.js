@@ -1,4 +1,5 @@
 let loc = "";
+let auth = "";
 
 //different ways Terrain seems to use for page changes plus a interval fallback for the programming page which I am yet to work out.
 window.onclick = checkLocation;
@@ -39,7 +40,9 @@ function checkLocation(){
   }
   //all pages
   if (checkPage(`//div[ancestor::nav[contains(@class, 'NavMenu')] and contains(@class, 'NavMenu__menu-container')]`, "contourReportsMenu-contourMenu",20))
-  createContourReportMenuItem(false, contourMenu, "Contour Menu", "contourMenu");
+  {
+    createContourReportMenuItem(false, contourMenu, "Contour Menu", "contourMenu");
+  }
 }
 
 function checkPage(query,id,delay){ //query = xpath query as string, id = id of an element contour creates to see if it has run, delay is ms delay before retry.
