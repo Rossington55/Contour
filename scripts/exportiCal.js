@@ -33,7 +33,7 @@ function initProgrammingExportBtn() {
   const btn = document.evaluate(`//button[ancestor::div[contains(@class, 'ViewPlannedActivity__actions')] and contains(@data-cy, 'EXPORT')]`, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
   const newButton = document.createElement("button");
   //css(newButton, styles.generateBtn);
-  newButton.classList = "mb-2 mr-4 v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--small";
+  newButton.classList = "mb-2 mr-4 v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--small contour-btn";
   newButton.onclick = exportiCal;
   newButton.innerHTML = "Save to Calendar (iCal)";
   newButton.id = "exportiCalBtn";

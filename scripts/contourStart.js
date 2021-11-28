@@ -1,4 +1,5 @@
 let loc = "";
+let auth = "";
 
 //different ways Terrain seems to use for page changes plus a interval fallback for the programming page which I am yet to work out.
 window.onclick = checkLocation;
@@ -18,6 +19,7 @@ function checkLocation(){
 
  function startContourChecks(){
   console.debug("Starting Contour");
+  //page selector
   switch (document.location.pathname) {
     case "/logbook/view-record":
       if (checkPage(`//button[ancestor::section[contains(@class, 'ViewRecord__no-print')] and contains(@data-cy, 'PRINT')]`, "copyClipboardBtn",20))
@@ -36,6 +38,11 @@ function checkLocation(){
         initBadgeReview();
       break;
   }
+  //all pages
+  if (checkPage(`//div[ancestor::nav[contains(@class, 'NavMenu')] and contains(@class, 'NavMenu__menu-container')]`, "contourReportsMenu-contourMenu",20))
+  {
+    createContourReportMenuItem(false, contourMenu, "Contour Menu", "contourMenu");
+  }
 }
 
 function checkPage(query,id,delay){ //query = xpath query as string, id = id of an element contour creates to see if it has run, delay is ms delay before retry.
@@ -48,3 +55,39 @@ function checkPage(query,id,delay){ //query = xpath query as string, id = id of 
   return false;
 }
 
+
+// set some constants for reports etc
+const LastAuthUser = localStorage.getItem('CognitoIdentityServiceProvider.6v98tbc09aqfvh52fml3usas3c.LastAuthUser');
+let currentProfile = {};
+
+fetch("https://members.terrain.scouts.com.au/profiles", {
+  method: 'GET', mode: 'cors', cache: 'no-cache', credentials: 'same-origin', 
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': localStorage.getItem("CognitoIdentityServiceProvider.6v98tbc09aqfvh52fml3usas3c."+LastAuthUser+".idToken")
+  },
+  redirect: 'error', referrerPolicy: 'no-referrer', 
+})
+.then(response => response.json())
+.then(data => {
+  currentProfile = data;
+})
+.catch((error) => {
+  currentProfile = {'Error:': error};
+});
+
+$("head").append(`<style type="text/css" id="contour"> 
+.contour-btn { 
+  background: linear-gradient(97.08deg,#004C00,#197419) !important;
+}
+.contour-menu { 
+  background: #004C00 !important;
+  border-bottom-color: #197419 !important;
+  border-top-color: #197419 !important;
+}
+
+.contour-menu:hover {
+  background-color: #197419 !important;
+}
+
+</style>}`);
