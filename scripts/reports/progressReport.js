@@ -1,11 +1,11 @@
 async function progressReport(retry){
   //load the inital html content into the container
   if(currentProfile.Error){
-    contourLoadPage("ERROR","This is a contour error. Please do not contact Terrain support for this issue. <br><br>Details:<br>" + JSON.stringify(currentProfile.Error));
+    summitLoadPage("ERROR","This is a summit error. Please do not contact Terrain support for this issue. <br><br>Details:<br>" + JSON.stringify(currentProfile.Error));
     return;
   }
-  contourLoadPage(
-    "CONTOUR REPORTS - PEAK AWARD PROGRESS REPORT", //Breadcrumb header
+  summitLoadPage(
+    "SUMMIT REPORTS - PEAK AWARD PROGRESS REPORT", //Breadcrumb header
   //html content is contained within the two backticks ` below
   `
     <h2>${currentProfile.profiles[0].unit.name}</h2>
@@ -106,7 +106,7 @@ async function progressReport(retry){
       console.debug("Data load failed retry attempt: " + retry)
       unitReport(retry++);
     }
-    else $("#loadingP").text("An error has occured please try again later. This is a Contour error. Please do not contact Terrain support for this issue.");
+    else $("#loadingP").text("An error has occured please try again later. This is a Summit error. Please do not contact Terrain support for this issue.");
   });
 
 }

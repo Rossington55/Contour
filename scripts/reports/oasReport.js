@@ -1,11 +1,11 @@
 async function oasReport(retry){
   //load the inital html content into the container
   if(currentProfile.Error){
-    contourLoadPage("ERROR","This is a contour error. Please do not contact Terrain support for this issue. <br><br>Details:<br>" + JSON.stringify(currentProfile.Error));
+    summitLoadPage("ERROR","This is a summit error. Please do not contact Terrain support for this issue. <br><br>Details:<br>" + JSON.stringify(currentProfile.Error));
     return;
   }
-  contourLoadPage(
-    "CONTOUR REPORTS - OAS REPORT", //Breadcrumb header
+  summitLoadPage(
+    "SUMMIT REPORTS - OAS REPORT", //Breadcrumb header
   //html content is contained within the two backticks ` below
   `
     <h2>${currentProfile.profiles[0].unit.name}</h2>
@@ -67,9 +67,6 @@ async function oasReport(retry){
     $('#oasReportTable').DataTable( {
       data: tableData,
       pageLength: 25,
-      // columnDefs: [
-      //   {targets: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19], className: 'dt-body-center'}
-      // ],
       "order":[[1,"desc"]]
     });
    }).fail(function(data) {
@@ -77,6 +74,6 @@ async function oasReport(retry){
       console.debug("Data load failed retry attempt: " + retry)
       unitReport(retry++);
     }
-    else $("#loadingP").text("An error has occured please try again later. This is a Contour error. Please do not contact Terrain support for this issue.");
+    else $("#loadingP").text("An error has occured please try again later. This is a Summit error. Please do not contact Terrain support for this issue.");
    });
 }

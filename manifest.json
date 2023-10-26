@@ -1,18 +1,12 @@
 {
-    "manifest_version": 2,
-    "name": "Contour",
-    "version": "1.4.0",
-    "description": "The tool for finding shortcuts over difficult terrain.",
+    "manifest_version": 3,
+    "name": "Terrain | Summit",
+    "version": "2.0.0",
+    "description": "Where Every Achievement is a Summit Conquered",
     "icons": {
         "16": "/images/Icon16.png",
         "48": "/images/Icon48.png",
         "128": "/images/Icon128.png"
-    },
-    "web_accessible_resources": [
-        "styles/structure.css"
-    ],
-    "browser_action": {
-        "default_popup": "popup.html"
     },
     "content_scripts": [
         {
@@ -24,8 +18,7 @@
                 "/scripts/dependencies/jquery.datatables.min.js",
                 "/scripts/dependencies/chart.min.js",
                 "/scripts/helperFunctions.js",
-                "/scripts/contourStart.js",
-                "/scripts/badgeReview.js",
+                "/scripts/summitStart.js",
                 "/scripts/copyLogbook.js",
                 "/scripts/exportiCal.js",
                 "/scripts/reportsMenu.js",
@@ -37,5 +30,7 @@
         }
     ],
     "permissions": [],
-    "content_security_policy": "script-src 'self' 'unsafe-eval' https://smtpjs.com/v3/smtp.js https://www.wpromotions.eu/confetti.min.js; object-src 'self'"
+    "content_security_policy": {
+        "extension_pages": "default-src 'self'"
+      }
 }
