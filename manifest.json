@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "Terrain | Summit",
+    "name": "Terrain | Contour",
     "version": "2.0.0",
-    "description": "Where Every Achievement is a Summit Conquered",
+    "description": "The tool for finding shortcuts over difficult terrain.",
     "icons": {
         "16": "/images/Icon16.png",
         "48": "/images/Icon48.png",
@@ -18,7 +18,7 @@
                 "/scripts/dependencies/jquery.datatables.min.js",
                 "/scripts/dependencies/chart.min.js",
                 "/scripts/helperFunctions.js",
-                "/scripts/summitStart.js",
+                "/scripts/contourStart.js",
                 "/scripts/copyLogbook.js",
                 "/scripts/exportiCal.js",
                 "/scripts/reportsMenu.js",
