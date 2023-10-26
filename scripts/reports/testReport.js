@@ -1,8 +1,8 @@
 
 async function testReport(){
   //load the inital html content into the container
-  summitLoadPage(
-    "SUMMIT REPORTS - TEST REPORT", //Breadcrumb header
+  contourLoadPage(
+    "CONTOUR REPORTS - TEST REPORT", //Breadcrumb header
   //html content is contained within the two backticks ` below
   `
     <h2>Test Report</h2>

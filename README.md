@@ -1,4 +1,4 @@
-# Summit
+# Contour
 The tool for finding shortcuts over difficult terrain. Feel free to request new features in the issues tab above or join our discord (https://discord.gg/s6hhmgWmsG) to discuss bugs or upcoming features.
 
 ## Badge approvals & notifications

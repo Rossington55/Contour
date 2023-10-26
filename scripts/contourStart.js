@@ -1,9 +1,9 @@
 let loc = "";
 let auth = "";
-let summitMessageHandlers = [];
-let bcChannel = new BroadcastChannel('TerrainSummit');
+let contourMessageHandlers = [];
+let bcChannel = new BroadcastChannel('TerrainContour');
 bcChannel.onmessage = (event) => {
-  summitMessageHandlers.forEach(entry => {
+  contourMessageHandlers.forEach(entry => {
       if (entry.type === event.data.type) {
           entry.handler(event);
       }
@@ -18,19 +18,19 @@ window.onhashchange = checkLocation;
 window.onpopstate = checkLocation;
 window.onload = checkLocation;
 setInterval(checkLocation,100);
-startSummitChecks();
+startContourChecks();
 
 function checkLocation(){
   //check if page has changed
   if (location.href != loc) {
     //console.debug("Location changed: " + loc +" not equal to " + location.href +" rechecking settings.");
     loc = location.href;
-    startSummitChecks();
+    startContourChecks();
   }
 }
 
- function startSummitChecks(){
-  //console.debug("Starting Summit");
+ function startContourChecks(){
+  //console.debug("Starting Contour");
   //page selector
   switch (document.location.pathname) {
     case "/logbook/view-record":
@@ -47,19 +47,19 @@ function checkLocation(){
       break;
   }
   //all pages
-  if (checkPage(`//div[ancestor::nav[contains(@class, 'NavMenu')] and contains(@class, 'NavMenu__menu-container')]`, "summitReportsMenu-summitMenu",20))
+  if (checkPage(`//div[ancestor::nav[contains(@class, 'NavMenu')] and contains(@class, 'NavMenu__menu-container')]`, "contourReportsMenu-contourMenu",20))
   {
-    createSummitReportMenuItem(false, summitMenu, "Terrain | Summit", "summitMenu");
+    createContourReportMenuItem(false, contourMenu, "Terrain | Contour", "contourMenu");
   }
 }
 
-function checkPage(query,id,delay){ //query = xpath query as string, id = id of an element summit creates to see if it has run, delay is ms delay before retry.
+function checkPage(query,id,delay){ //query = xpath query as string, id = id of an element contour creates to see if it has run, delay is ms delay before retry.
   //evaluate if page is loaded
   if(document.evaluate(query, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue)
-    //check if Summit element needs to be added and return result
+    //check if Contour element needs to be added and return result
     return !document.getElementById(id);
   //try again in 20ms and return false
-  setTimeout(()=>{ startSummitChecks() },delay);
+  setTimeout(()=>{ startContourChecks() },delay);
   return false;
 }
 
@@ -84,17 +84,17 @@ fetch("https://members.terrain.scouts.com.au/profiles", {
   currentProfile = {'Error:': error};
 });
 
-$("head").append(`<style type="text/css" id="summit"> 
-.summit-btn { 
+$("head").append(`<style type="text/css" id="contour"> 
+.contour-btn { 
   background: linear-gradient(97.08deg,#004C00,#197419) !important;
 }
-.summit-menu { 
+.contour-menu { 
   background: #004C00 !important;
   border-bottom-color: #197419 !important;
   border-top-color: #197419 !important;
 }
 
-.summit-menu:hover {
+.contour-menu:hover {
   background-color: #197419 !important;
 }
 
